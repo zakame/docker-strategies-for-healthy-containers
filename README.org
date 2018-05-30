@@ -1,0 +1,74 @@
+#+TITLE: Strategies for Building Healthy Containers
+#+AUTHOR: Zak B. Elep
+#+EMAIL: zakame@zakame.net
+#+OPTIONS: toc:nil num:nil email:t
+#+REVEAL_THEME: night
+#+REVEAL_EXTRA_CSS: extra.css
+#+REVEAL_PLUGINS: (notes)
+
+https://github.com/zakame/docker-strategies-for-healthy-containers
+
+* About Me
+
+  - @zakame on GitHub, Twitter, FB
+  - Goon from the Philippine Linux Users Group
+  - Co-organizer, Docker Manila Meetup group
+  - Hacks on Perl, Docker, Emacs
+
+  #+BEGIN_NOTES
+  This is written using Emacs OrgMode, publishing using Reveal.js.
+  #+END_NOTES
+
+* What's this for?
+
+  - Continuing the theme from @aisrael's talk
+  - Not too much content here, more to get people talking ;)
+  - A few ways to chip away a container/image's size
+  - A few tools for DevOps to get accustomed to Docker
+
+* What makes a container "healthy"?
+
+  - Low size
+  - Low dependencies
+  - Loose coupling with dependencies
+
+** Lowering size: ~FROM scratch~ (or not using =buildpack-deps=)
+
+   - Try deriving from [[https://github.com/docker/official-images][Docker official-images repos]]
+   - Most use some form of =buildpack-deps= base image (which is quite fat)
+   - Consider =scratch= or =slim= images
+
+** Lowering dependencies: internal "stack" dependencies
+
+   - Depends on your app, but choosing dependencies wisely is often a factor
+   - Use frameworks with care
+   - Choice of language is a *big* factor here
+
+** Lowering dependencies: external services
+
+   - This is where *microservice* architectures get their attention
+   - But mostly, what applies to choosing internal dependencies also apply
+   - More care to consider in the long term (e.g. maintaining own DB vs
+     just using RDS)
+
+** Loose coupling
+
+   - Frameworks
+
+* What tools to use aside from core Docker?
+
+  - Just a sampling of tools @zakame uses at $WORK
+
+** test-kitchen and kitchen-docker
+
+   - =test-kitchen= provides sandboxed environments for deploying apps
+     into for *converging* resources and *verifying* state
+   - =kitchen-docker= changes test-kitchen's default =vagrant= VM base to
+     use Docker containers instead
+
+** habitat
+
+   - *application configuration management* from the makers of Chef (and
+     test-kitchen)
+   - build apps as packages similar to Debian =deb= or RHEL =rpm=
+   - export apps as Docker containers
