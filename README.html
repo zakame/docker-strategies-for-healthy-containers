@@ -27,15 +27,15 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><h1 class="title">Strategies for Building Healthy Containers</h1><h2 class="author">Zak B. Elep</h2><h2 class="email"><a href="mailto:zakame@zakame.net">zakame@zakame.net</a></h2><p class="date">Created: 2018-05-30 Wed 18:24</p>
+<section id="sec-title-slide"><h1 class="title">Strategies for Building Healthy Containers</h1><h2 class="author">Zak B. Elep</h2><h2 class="email"><a href="mailto:zakame@zakame.net">zakame@zakame.net</a></h2><p class="date">Created: 2018-05-30 Wed 18:35</p>
 </section>
 <p>
 <a href="https://github.com/zakame/docker-strategies-for-healthy-containers">https://github.com/zakame/docker-strategies-for-healthy-containers</a>
 </p>
 
 <section>
-<section id="slide-org76c48cc">
-<h2 id="org76c48cc">About Me</h2>
+<section id="slide-orge53699a">
+<h2 id="orge53699a">About Me</h2>
 <ul>
 <li>@zakame on GitHub, Twitter, FB</li>
 <li>Goon from the Philippine Linux Users Group</li>
@@ -54,8 +54,8 @@ This is written using Emacs OrgMode, publishing using Reveal.js.
 </section>
 </section>
 <section>
-<section id="slide-org6cbf166">
-<h2 id="org6cbf166">What's this for?</h2>
+<section id="slide-org35c1fad">
+<h2 id="org35c1fad">What's this for?</h2>
 <ul>
 <li>Continuing the theme from @aisrael's talk</li>
 <li>Not too much content here, more to get people talking ;)</li>
@@ -67,8 +67,8 @@ This is written using Emacs OrgMode, publishing using Reveal.js.
 </section>
 </section>
 <section>
-<section id="slide-orgcf36161">
-<h2 id="orgcf36161">What makes a container "healthy"?</h2>
+<section id="slide-org244a8c7">
+<h2 id="org244a8c7">What makes a container "healthy"?</h2>
 <ul>
 <li>Low size</li>
 <li>Low dependencies</li>
@@ -77,8 +77,8 @@ This is written using Emacs OrgMode, publishing using Reveal.js.
 </ul>
 
 </section>
-<section id="slide-org5d03961">
-<h3 id="org5d03961">Lowering size: <code>FROM scratch</code> (or not using <code>buildpack-deps</code>)</h3>
+<section id="slide-org8d6d163">
+<h3 id="org8d6d163">Lowering size: <code>FROM scratch</code> (or not using <code>buildpack-deps</code>)</h3>
 <ul>
 <li>Try deriving from <a href="https://github.com/docker/official-images">Docker official-images repos</a></li>
 <li>Most use some form of <code>buildpack-deps</code> base image (which is quite fat)</li>
@@ -87,8 +87,8 @@ This is written using Emacs OrgMode, publishing using Reveal.js.
 </ul>
 
 </section>
-<section id="slide-org6cd2ae2">
-<h3 id="org6cd2ae2">Lowering dependencies: internal "stack" dependencies</h3>
+<section id="slide-org56e553e">
+<h3 id="org56e553e">Lowering dependencies: internal "stack" dependencies</h3>
 <ul>
 <li>Depends on your app, but choosing dependencies wisely is often a factor</li>
 <li>Use frameworks with care</li>
@@ -97,8 +97,8 @@ This is written using Emacs OrgMode, publishing using Reveal.js.
 </ul>
 
 </section>
-<section id="slide-org229bf7d">
-<h3 id="org229bf7d">Lowering dependencies: external services</h3>
+<section id="slide-orgde9a1df">
+<h3 id="orgde9a1df">Lowering dependencies: external services</h3>
 <ul>
 <li>This is where <b>microservice</b> architectures get their attention</li>
 <li>But mostly, what applies to choosing internal dependencies also apply</li>
@@ -108,26 +108,28 @@ just using RDS)</li>
 </ul>
 
 </section>
-<section id="slide-org7603b19">
-<h3 id="org7603b19">Loose coupling</h3>
+<section id="slide-orga4e54ea">
+<h3 id="orga4e54ea">Loose coupling</h3>
 <ul>
-<li>Frameworks</li>
+<li>Frameworks can both encourage and discourage coupling</li>
+<li>Architectural choices also matter (e.g. CRUD on top of spaghetti)</li>
+<li>"Simple is best"</li>
 
 </ul>
 
 </section>
 </section>
 <section>
-<section id="slide-org71a4420">
-<h2 id="org71a4420">What tools to use aside from core Docker?</h2>
+<section id="slide-org7077e75">
+<h2 id="org7077e75">What tools to use aside from core Docker?</h2>
 <ul>
 <li>Just a sampling of tools @zakame uses at $WORK</li>
 
 </ul>
 
 </section>
-<section id="slide-org08d2e68">
-<h3 id="org08d2e68">test-kitchen and kitchen-docker</h3>
+<section id="slide-org79b0bd9">
+<h3 id="org79b0bd9">test-kitchen and kitchen-docker</h3>
 <ul>
 <li><code>test-kitchen</code> provides sandboxed environments for deploying apps
 into for <b>converging</b> resources and <b>verifying</b> state</li>
@@ -137,8 +139,8 @@ use Docker containers instead</li>
 </ul>
 
 </section>
-<section id="slide-org3e37e45">
-<h3 id="org3e37e45">habitat</h3>
+<section id="slide-orgac88578">
+<h3 id="orgac88578">habitat</h3>
 <ul>
 <li><b>application configuration management</b> from the makers of Chef (and
 test-kitchen)</li>
