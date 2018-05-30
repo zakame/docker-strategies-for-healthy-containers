@@ -53,7 +53,9 @@ https://github.com/zakame/docker-strategies-for-healthy-containers
 
 ** Loose coupling
 
-   - Frameworks
+   - Frameworks can both encourage and discourage coupling
+   - Architectural choices also matter (e.g. CRUD on top of spaghetti)
+   - "Simple is best"
 
 * What tools to use aside from core Docker?
 
