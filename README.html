@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Strategies for Building Healthy Containers</title>
+<meta name="author" content="(Zak B. Elep)"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/night.css" id="theme"/>
+
+<link rel="stylesheet" href="extra.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Strategies for Building Healthy Containers</h1><h2 class="author">Zak B. Elep</h2><h2 class="email"><a href="mailto:zakame@zakame.net">zakame@zakame.net</a></h2><p class="date">Created: 2018-05-30 Wed 18:24</p>
+</section>
+<p>
+<a href="https://github.com/zakame/docker-strategies-for-healthy-containers">https://github.com/zakame/docker-strategies-for-healthy-containers</a>
+</p>
+
+<section>
+<section id="slide-org76c48cc">
+<h2 id="org76c48cc">About Me</h2>
+<ul>
+<li>@zakame on GitHub, Twitter, FB</li>
+<li>Goon from the Philippine Linux Users Group</li>
+<li>Co-organizer, Docker Manila Meetup group</li>
+<li>Hacks on Perl, Docker, Emacs</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+This is written using Emacs OrgMode, publishing using Reveal.js.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org6cbf166">
+<h2 id="org6cbf166">What's this for?</h2>
+<ul>
+<li>Continuing the theme from @aisrael's talk</li>
+<li>Not too much content here, more to get people talking ;)</li>
+<li>A few ways to chip away a container/image's size</li>
+<li>A few tools for DevOps to get accustomed to Docker</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgcf36161">
+<h2 id="orgcf36161">What makes a container "healthy"?</h2>
+<ul>
+<li>Low size</li>
+<li>Low dependencies</li>
+<li>Loose coupling with dependencies</li>
+
+</ul>
+
+</section>
+<section id="slide-org5d03961">
+<h3 id="org5d03961">Lowering size: <code>FROM scratch</code> (or not using <code>buildpack-deps</code>)</h3>
+<ul>
+<li>Try deriving from <a href="https://github.com/docker/official-images">Docker official-images repos</a></li>
+<li>Most use some form of <code>buildpack-deps</code> base image (which is quite fat)</li>
+<li>Consider <code>scratch</code> or <code>slim</code> images</li>
+
+</ul>
+
+</section>
+<section id="slide-org6cd2ae2">
+<h3 id="org6cd2ae2">Lowering dependencies: internal "stack" dependencies</h3>
+<ul>
+<li>Depends on your app, but choosing dependencies wisely is often a factor</li>
+<li>Use frameworks with care</li>
+<li>Choice of language is a <b>big</b> factor here</li>
+
+</ul>
+
+</section>
+<section id="slide-org229bf7d">
+<h3 id="org229bf7d">Lowering dependencies: external services</h3>
+<ul>
+<li>This is where <b>microservice</b> architectures get their attention</li>
+<li>But mostly, what applies to choosing internal dependencies also apply</li>
+<li>More care to consider in the long term (e.g. maintaining own DB vs
+just using RDS)</li>
+
+</ul>
+
+</section>
+<section id="slide-org7603b19">
+<h3 id="org7603b19">Loose coupling</h3>
+<ul>
+<li>Frameworks</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-org71a4420">
+<h2 id="org71a4420">What tools to use aside from core Docker?</h2>
+<ul>
+<li>Just a sampling of tools @zakame uses at $WORK</li>
+
+</ul>
+
+</section>
+<section id="slide-org08d2e68">
+<h3 id="org08d2e68">test-kitchen and kitchen-docker</h3>
+<ul>
+<li><code>test-kitchen</code> provides sandboxed environments for deploying apps
+into for <b>converging</b> resources and <b>verifying</b> state</li>
+<li><code>kitchen-docker</code> changes test-kitchen's default <code>vagrant</code> VM base to
+use Docker containers instead</li>
+
+</ul>
+
+</section>
+<section id="slide-org3e37e45">
+<h3 id="org3e37e45">habitat</h3>
+<ul>
+<li><b>application configuration management</b> from the makers of Chef (and
+test-kitchen)</li>
+<li>build apps as packages similar to Debian <code>deb</code> or RHEL <code>rpm</code></li>
+<li>export apps as Docker containers</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+});
+</script>
+</body>
+</html>
